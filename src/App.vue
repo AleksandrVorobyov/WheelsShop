@@ -21,6 +21,9 @@
   --clrFtrdTtl: #1e1e1e;
   --clrFtrdTxt: #3b3b3b;
   --clrTeamTtl: #1e1e1e;
+  --clrSclTtl: #3b3b3b;
+  --clrFtrLogo: #ededed;
+  --clrFtrSub: #9d9d9d;
 
   --clrShadowNav: #eaeaea;
 

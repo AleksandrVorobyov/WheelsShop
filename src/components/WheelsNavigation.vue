@@ -1,6 +1,6 @@
 <template lang="pug">
 section.navigation
-  .container
+  .container--big
     .navigation-wrap
       .navigation__logo
         router-link.navigation__logo-link(to="/") {{ navigation.logo }}
