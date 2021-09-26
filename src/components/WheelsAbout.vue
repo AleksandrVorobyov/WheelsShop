@@ -3,30 +3,34 @@ section.about
   .container
     .about-wrap
       .about__title
-        section-title(:title="about.title" :subtitle="about.subtitle")
+        section-title(:title="about.title", :subtitle="about.subtitle")
       .about__img
         img(:src="require('@/assets/img/' + about.src)", :alt="about.alt")
       p.about__text {{ about.text }}
 </template>
 <script>
 import { mapGetters } from "vuex";
-import sectionTitle from "./parts/section-title.vue"
+import sectionTitle from "./parts/section-title.vue";
 export default {
   computed: {
     ...mapGetters(["about"]),
   },
   components: {
-    sectionTitle
-  }
+    sectionTitle,
+  },
 };
 </script>
 <style scoped lang="scss">
 .about {
   position: relative;
-  padding: 50px 0 65px;
+  padding: 50px 0px;
   overflow: hidden;
   z-index: 500;
   background: white;
+
+  @media (min-width: 480px) {
+    padding: 50px 0 65px;
+  }
 }
 
 .about-wrap {

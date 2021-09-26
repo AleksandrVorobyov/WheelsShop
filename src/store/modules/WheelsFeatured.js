@@ -59,15 +59,37 @@ export default {
         featured(state) {
             return state.featured;
         },
+        featuredCardList(state) {
+            if (window.innerWidth >= 870) {
+                return state.featured.cards;
+            } else {
+                const newArray = state.featured.cards;
+                newArray.splice(3, 6);
+                return state.featured.cards = newArray;
+            }
+        }
     },
     mutations: {
-        featured(state, payload) {
-            console.log(state.featured);
+        featuredCardAnim(_, event) {
+            const cardItem = event.target,
+                halfHeight = cardItem.offsetHeight / 2,
+                halfWidth = cardItem.offsetWidth / 2;
+            cardItem.style.transform =
+                "rotateX(" +
+                -(event.offsetY - halfHeight) / 5 +
+                "deg) rotateY(" +
+                (event.offsetX - halfWidth) / 5 +
+                "deg)";
+        },
+
+        featuredCardStop(_, event) {
+            const cardItem = event.target;
+            cardItem.style.transform = "rotateX(0)";
         },
     },
     actions: {
         featured({ commit, state }, products) {
             console.log(commit.featured);
-        }
+        },
     }
 }

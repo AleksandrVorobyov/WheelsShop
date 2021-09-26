@@ -27,7 +27,7 @@ export default {
                     link: '/contact',
                     text: 'contact'
                 },
-            ]
+            ],
         },
     },
     getters: {

@@ -6,8 +6,7 @@ section.header
         .header__nav-logo
           router-link.header__nav-logo-title(to="/") {{ header.logo }}
         .header__nav-menu
-          button.header__nav-menu-button
-            span {{ header.menu }}
+          burger-sidebar(:text="header.menu", @action="sidebarUnlock()")
       .header__body
         h2.header__body-title {{ header.title }}
         p.header__body-text {{ header.text }}
@@ -15,9 +14,18 @@ section.header
 </template>
 <script>
 import { mapGetters } from "vuex";
+import burgerSidebar from "./parts/burger-sidebar.vue";
 export default {
   computed: {
     ...mapGetters(["header"]),
+  },
+  components: {
+    burgerSidebar,
+  },
+  methods: {
+    sidebarUnlock() {
+      this.$store.commit("sidebarUnlock");
+    },
   },
 };
 </script>
@@ -36,12 +44,16 @@ export default {
 
   &::before {
     position: absolute;
-    bottom: 90px;
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
     width: 45px;
     height: 65px;
     content: url("~@/assets/img/header/mouse-icon.png");
+
+    @media (min-width: 360px) {
+      bottom: 90px;
+    }
   }
 }
 
@@ -54,81 +66,61 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 300px;
+  margin-bottom: 70px;
+
+  @media (min-width: 360px) {
+    margin-bottom: 120px;
+  }
+
+  @media (min-width: 480px) {
+    margin-bottom: 200px;
+  }
+
+  @media (min-width: 720px) {
+    margin-bottom: 300px;
+  }
 }
 
 .header__nav-logo-title {
-  font-size: 30px;
+  font-size: 26px;
   font-family: var(--fontBold);
   color: var(--clrHeadTtl);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
-}
 
-.header__nav-menu-button {
-  position: relative;
-  padding: 0;
-  padding-right: 25px;
-  font-size: 28px;
-  font-family: var(--fontBold);
-  color: var(--clrHeadTtl);
-  font-weight: bold;
-  text-transform: uppercase;
-  line-height: 0.6;
-  border: none;
-  outline: none;
-  background: transparent;
-  cursor: pointer;
-  letter-spacing: 2px;
-
-  &::before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 4px;
-    width: 20px;
-    content: "";
-    background: var(--clrHeadTtl);
-  }
-
-  &::after {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 4px;
-    width: 20px;
-    content: "";
-    background: var(--clrHeadTtl);
-  }
-
-  span::before {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    height: 4px;
-    width: 20px;
-    content: "";
-    background: var(--clrHeadTtl);
+  @media (min-width: 480px) {
+    font-size: 30px;
   }
 }
 
 .header__body {
   max-width: 670px;
   margin-left: auto;
-  text-align: right;
+  text-align: center;
+
+  @media (min-width: 480px) {
+    text-align: right;
+  }
 }
 
 .header__body-title {
   margin-bottom: 15px;
-  font-size: 48px;
+  font-size: 28px;
   font-family: var(--fontBold);
   color: var(--clrHeadTtl);
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.2;
   letter-spacing: 4px;
+
+  @media (min-width: 480px) {
+    font-size: 34px;
+  }
+
+  @media (min-width: 720px) {
+    font-size: 48px;
+  }
 }
 
 .header__body-text {
@@ -136,21 +128,28 @@ export default {
   max-width: 400px;
   margin: 0;
   margin-left: auto;
-  font-size: 24px;
+  font-size: 20px;
   font-family: var(--fontLight);
   font-weight: 300;
   color: var(--clrHeadTtl);
   line-height: 1.6;
-  text-align: right;
   letter-spacing: 2px;
+
+  @media (min-width: 720px) {
+    font-size: 24px;
+  }
 }
 
 .header__body-author {
-  font-size: 20px;
+  font-size: 18px;
   font-family: var(--fontLightItalic);
   color: var(--clrHeadTtl);
   font-weight: 300;
   line-height: 1.6;
   letter-spacing: 2px;
+
+  @media (min-width: 720px) {
+    font-size: 20px;
+  }
 }
 </style>

@@ -35,10 +35,14 @@ export default {
 <style scoped lang="scss">
 .footer {
   position: relative;
-  padding: 100px 0;
+  padding: 50px 0;
   overflow: hidden;
   z-index: 500;
   background: #1e1e1e;
+
+  @media (min-width: 480px) {
+    padding: 100px 0;
+  }
 }
 
 .footer-wrap {
@@ -62,7 +66,7 @@ export default {
 }
 
 .footer__head-subtitle {
-  font-size: 18px;
+  font-size: 16px;
   font-family: var(--fontBold);
   color: var(--clrFtrSub);
   font-weight: bold;
@@ -70,12 +74,42 @@ export default {
   line-height: 1.4;
   text-align: center;
   letter-spacing: 2px;
+
+  @media (min-width: 480px) {
+    font-size: 18px;
+  }
 }
 
 .footer__list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "col-footer-01 " "col-footer-02" "col-footer-04" "col-footer-03";
   gap: 30px;
+  justify-content: center;
+
+  @media (min-width: 480px) {
+    grid-template-areas: "col-footer-01 col-footer-04" "col-footer-02 col-footer-03";
+  }
+
+  @media (min-width: 1110px) {
+    grid-template-areas: "col-footer-01 col-footer-02 col-footer-03 col-footer-04";
+    justify-content: space-between;
+  }
+}
+
+.footer__list-col:nth-child(1) {
+  grid-area: col-footer-01;
+}
+
+.footer__list-col:nth-child(2) {
+  grid-area: col-footer-02;
+}
+
+.footer__list-col:nth-child(3) {
+  grid-area: col-footer-03;
+}
+
+.footer__list-col:nth-child(4) {
+  grid-area: col-footer-04;
 }
 
 .footer__list-title {

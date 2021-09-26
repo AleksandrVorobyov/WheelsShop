@@ -1,7 +1,18 @@
 <template lang="pug">
+wheels-sidebar
 #page.page
   router-view
 </template>
+
+<script>
+import WheelsSidebar from "./components/WheelsSidebar.vue";
+
+export default {
+  components: {
+    WheelsSidebar,
+  },
+};
+</script>
 
 <style lang="scss">
 :root {
@@ -9,6 +20,7 @@
   --bgSectionWhite: #ffffff;
   --bgSectionBlack: #000;
   --bgSectTeam: #ededed;
+  --bgSidebar: #3b3b3b;
 
   --clrSectTtl: #1d1d1d;
   --clrSectTxt: #3b3b3b;
@@ -24,6 +36,7 @@
   --clrSclTtl: #3b3b3b;
   --clrFtrLogo: #ededed;
   --clrFtrSub: #9d9d9d;
+  --clrSidebarTtl: #1e1e1e;
 
   --clrShadowNav: #eaeaea;
 
@@ -44,6 +57,17 @@ html {
   scroll-behavior: smooth;
 }
 
+#app {
+  position: relative;
+  display: flex;
+}
+
+#page {
+  position: relative;
+  width: 100%;
+  transition: all 0.4s linear;
+}
+
 html,
 body {
   position: relative;
@@ -58,8 +82,32 @@ body {
   font-weight: 400;
 }
 
-body.hidden {
-  overflow: hidden;
+@media (max-width: 1360px) {
+  body.hidden {
+    position: fixed;
+    overflow: hidden;
+  }
+
+  #page.page--close {
+    &::before {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background: #000;
+      opacity: 0.4;
+      z-index: 1500;
+    }
+  }
+}
+
+@media (min-width: 1360px) {
+  #page.page--close {
+    margin-left: 400px;
+    width: calc(100% - 400px);
+  }
 }
 
 input,

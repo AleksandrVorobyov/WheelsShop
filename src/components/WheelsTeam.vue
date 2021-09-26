@@ -42,7 +42,16 @@ export default {
 
 .team__list {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  @media (min-width: 720px) {
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: start;
+    gap: 0;
+  }
 }
 
 .team__list-item {
@@ -52,10 +61,16 @@ export default {
 .team__list-img {
   position: relative;
   margin-bottom: 20px;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+  transition: transform 0.4s linear;
   overflow: hidden;
+
+  @media (min-width: 720px) {
+    width: 200px;
+    height: 200px;
+  }
 
   img {
     position: absolute;
@@ -65,11 +80,15 @@ export default {
     height: 100%;
     object-fit: cover;
   }
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .team__list-name {
   margin-bottom: 10px;
-  font-size: 30px;
+  font-size: 24px;
   font-family: var(--fontBold);
   color: var(--clrTeamTtl);
   font-weight: bold;
@@ -77,10 +96,18 @@ export default {
   line-height: 1;
   text-align: center;
   letter-spacing: 2px;
+
+  @media (min-width: 480px) {
+    font-size: 26px;
+  }
+
+  @media (min-width: 720px) {
+    font-size: 30px;
+  }
 }
 
 .team__list-meta {
-  font-size: 18px;
+  font-size: 16px;
   font-family: var(--fontMedium);
   color: var(--clrTeamTtl);
   font-weight: bold;
@@ -88,6 +115,10 @@ export default {
   line-height: 1.2;
   text-align: center;
   letter-spacing: 2px;
+
+  @media (min-width: 480px) {
+    font-size: 18px;
+  }
 }
 </style>
 
