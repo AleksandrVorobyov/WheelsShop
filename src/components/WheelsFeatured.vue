@@ -1,5 +1,5 @@
 <template lang="pug">
-section.featured
+section.featured#featured
   .container
     .featured-wrap
       .featured__title
@@ -36,6 +36,12 @@ export default {
     featuredCardStop(event) {
       this.$store.commit("featuredCardStop", event);
     },
+    featuredAnim() {
+      this.$store.commit("featuredAnim");
+    },
+  },
+  mounted() {
+    this.featuredAnim();
   },
 };
 </script>
@@ -59,12 +65,20 @@ export default {
 .featured__cards {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(300px, 400px) minmax(300px, 400px) minmax(
-      300px,
-      400px
+
+  grid-template-rows: minmax(250px, 300px) minmax(250px, 300px) minmax(
+      250px,
+      300px
     );
   gap: 40px;
   justify-content: center;
+
+  @media (min-width: 360px) {
+    grid-template-rows: minmax(300px, 400px) minmax(300px, 400px) minmax(
+        300px,
+        400px
+      );
+  }
 
   @media (min-width: 480px) {
     grid-template-columns: 400px;
@@ -144,11 +158,16 @@ export default {
 .featured__cards-img {
   position: relative;
   display: block;
-  width: 300px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   transform: translateZ(100px);
   object-fit: contain;
   object-position: center;
+
+  @media (min-width: 360px) {
+    width: 300px;
+    height: 250px;
+  }
 }
 
 .featured__cards-title,

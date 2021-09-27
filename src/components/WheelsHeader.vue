@@ -26,13 +26,19 @@ export default {
     sidebarUnlock() {
       this.$store.commit("sidebarUnlock");
     },
+    headerAnim() {
+      this.$store.commit("headerAnim");
+    },
+  },
+  mounted() {
+    this.headerAnim();
   },
 };
 </script>
 <style scoped lang="scss">
 .header {
   position: relative;
-  padding: 115px 0 90px;
+  padding: 50px 0;
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
@@ -41,6 +47,10 @@ export default {
       no-repeat,
     linear-gradient(var(--bgHeader), var(--bgHeader));
   background-attachment: fixed;
+
+  @media (min-width: 360px) {
+    padding: 115px 0 90px;
+  }
 
   &::before {
     position: absolute;
@@ -52,6 +62,7 @@ export default {
     content: url("~@/assets/img/header/mouse-icon.png");
 
     @media (min-width: 360px) {
+      animation: mouseUp 3s linear 0s infinite alternate;
       bottom: 90px;
     }
   }
@@ -150,6 +161,15 @@ export default {
 
   @media (min-width: 720px) {
     font-size: 20px;
+  }
+}
+
+@keyframes mouseUp {
+  from {
+    bottom: 50px;
+  }
+  to {
+    bottom: 90px;
   }
 }
 </style>

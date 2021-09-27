@@ -21,7 +21,6 @@ section#sidebar.sidebar
 </template>
 <script>
 import { mapGetters } from "vuex";
-import sidebarSvg from "./parts/sidebar-svg.vue";
 import iconHome from "@/assets/img/icons/home.vue";
 import iconAbout from "@/assets/img/icons/about.vue";
 import iconBlog from "@/assets/img/icons/blog.vue";
@@ -34,7 +33,6 @@ export default {
     ...mapGetters(["sidebar"]),
   },
   components: {
-    sidebarSvg,
     iconHome,
     iconAbout,
     iconBlog,
@@ -65,19 +63,24 @@ export default {
   padding: 100px 0px;
   width: 0px;
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
   z-index: 2000;
   background: linear-gradient(rgba(39, 39, 39, 0.97), rgba(39, 39, 39, 0.97)),
     url("~@/assets/img/sidebar/sidebar.jpg") top left / cover no-repeat;
   transition: all 0.4s linear;
+
+  @media (min-width: 720px) {
+    overflow: hidden;
+  }
 }
 
 .sidebar--active {
   width: 100%;
-  padding: 100px 30px;
+  padding: 100px 0px;
 
   @media (min-width: 480px) {
     width: 400px;
+    padding: 100px 30px;
   }
 
   .sidebar-wrap {
@@ -116,7 +119,7 @@ export default {
   align-items: center;
   background: rgba(255, 255, 255, 0.7);
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 14px;
   font-family: var(--fontBold);
   color: var(--clrHeadTtl);
   font-weight: bold;
@@ -126,6 +129,10 @@ export default {
   letter-spacing: 2px;
   overflow: hidden;
   z-index: 100;
+
+  @media (min-width: 480px) {
+    font-size: 18px;
+  }
 
   &::before {
     position: absolute;
@@ -162,10 +169,10 @@ export default {
   }
 
   &:hover {
-    color: #ff0000;
+    color: var(--clrSidebarActive);
 
     &::before {
-      border-left: 6px solid #ff0000;
+      border-left: 6px solid var(--clrSidebarActive);
       transition: all 0.3s linear;
     }
     &::after {
@@ -176,19 +183,19 @@ export default {
   }
 
   &:hover svg {
-    fill: #ff0000;
+    fill: var(--clrSidebarActive);
   }
 }
 
 .sidebar__menu-list-item a.router-link-active {
-  color: #ff0000;
+  color: var(--clrSidebarActive);
 
   svg {
-    fill: #ff0000;
+    fill: var(--clrSidebarActive);
   }
 
   &::before {
-    border-left: 6px solid #ff0000;
+    border-left: 6px solid var(--clrSidebarActive);
   }
   &::after {
     width: 400px;
@@ -245,7 +252,7 @@ export default {
   &:hover {
     &::after,
     &::before {
-      background: #ff0000;
+      background: var(--clrSidebarActive);
     }
   }
 }
@@ -261,7 +268,7 @@ export default {
   padding: 10px 20px;
   height: 60px;
   background: rgb(37, 37, 37);
-  font-size: 18px;
+  font-size: 14px;
   font-family: var(--fontBold);
   color: var(--clrHeadTtl);
   font-weight: bold;
@@ -274,16 +281,24 @@ export default {
   cursor: pointer;
   z-index: 10;
 
+  @media (min-width: 480px) {
+    font-size: 18px;
+  }
+
   &::before {
-    --size: 0;
+    --sizeForm: 0;
 
     content: "";
     position: absolute;
-    left: var(--x);
-    top: var(--y);
-    width: var(--size);
-    height: var(--size);
-    background: radial-gradient(circle closest-side, #ff0000, transparent);
+    left: var(--xLeftForm);
+    top: var(--yTopForm);
+    width: var(--sizeForm);
+    height: var(--sizeForm);
+    background: radial-gradient(
+      circle closest-side,
+      var(--clrSidebarActive),
+      transparent
+    );
     transform: translate(-50%, -50%);
     transition: width 0.2s ease, height 0.2s ease;
     z-index: -1;
@@ -294,7 +309,7 @@ export default {
   }
 
   &:hover::before {
-    --size: 400px;
+    --sizeForm: 400px;
   }
 }
 </style>

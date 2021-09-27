@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 export default {
   state: {
     footer: {
@@ -98,8 +100,36 @@ export default {
     },
   },
   mutations: {
-    footer(state, payload) {
-      console.log(state.footer);
+    footerAnim(state, payload) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from('.footer__head', {
+        scrollTrigger: {
+          trigger: ".footer__head",
+          toggleActions: "restart pause restart pause",
+        },
+        opacity: 0,
+        y: -30,
+        duration: .7,
+      });
+
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".footer__list",
+          toggleActions: "restart pause restart pause",
+        },
+      })
+
+      let socialItems = document.querySelectorAll('.footer__list-col')
+
+      socialItems.forEach((item) => {
+        tl.from(item, {
+          opacity: 0,
+          scale: 0,
+          duration: 1,
+          ease: "elastic.out(1, 0.3)"
+        });
+      })
     },
   },
   actions: {

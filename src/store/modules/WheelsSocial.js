@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 export default {
   state: {
     social: {
@@ -35,8 +37,45 @@ export default {
     },
   },
   mutations: {
-    social(state, payload) {
-      console.log(state.social);
+    socialAnim(state, payload) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from('.social__title', {
+        scrollTrigger: {
+          trigger: ".social__title",
+          toggleActions: "restart pause restart pause",
+        },
+        opacity: 0,
+        y: -30,
+        duration: .7,
+      });
+
+      gsap.from('.social__appeal', {
+        scrollTrigger: {
+          trigger: ".social__appeal",
+          toggleActions: "restart pause restart pause",
+        },
+        opacity: 0,
+        y: 30,
+        duration: .7,
+      });
+
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".social__case",
+          toggleActions: "restart pause restart pause",
+        },
+      })
+
+      let socialItems = document.querySelectorAll('.social__case-img')
+
+      socialItems.forEach((item) => {
+        tl.from(item, {
+          opacity: 0,
+          scale: 0,
+          duration: .7,
+        });
+      })
     },
   },
   actions: {

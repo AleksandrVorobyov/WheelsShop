@@ -30,6 +30,14 @@ export default {
   computed: {
     ...mapGetters(["footer"]),
   },
+  methods: {
+    footerAnim() {
+      this.$store.commit("footerAnim");
+    },
+  },
+  mounted() {
+    this.footerAnim();
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -38,7 +46,7 @@ export default {
   padding: 50px 0;
   overflow: hidden;
   z-index: 500;
-  background: #1e1e1e;
+  background: var(--bgFooter);
 
   @media (min-width: 480px) {
     padding: 100px 0;
@@ -66,7 +74,7 @@ export default {
 }
 
 .footer__head-subtitle {
-  font-size: 16px;
+  font-size: 14px;
   font-family: var(--fontBold);
   color: var(--clrFtrSub);
   font-weight: bold;
@@ -74,6 +82,10 @@ export default {
   line-height: 1.4;
   text-align: center;
   letter-spacing: 2px;
+
+  @media (min-width: 360px) {
+    font-size: 16px;
+  }
 
   @media (min-width: 480px) {
     font-size: 18px;
@@ -114,7 +126,7 @@ export default {
 
 .footer__list-title {
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 16px;
   font-family: var(--fontBold);
   color: var(--clrFtrLogo);
   text-transform: uppercase;
@@ -122,12 +134,16 @@ export default {
   line-height: 1;
   text-align: left;
   letter-spacing: 2px;
+
+  @media (min-width: 360px) {
+    font-size: 18px;
+  }
 }
 
 .footer__list-links-item a {
   position: relative;
   display: block;
-  font-size: 18px;
+  font-size: 14px;
   color: var(--clrFtrLogo);
   font-weight: 500;
   text-transform: uppercase;
@@ -135,6 +151,10 @@ export default {
   letter-spacing: 2px;
   text-align: left;
   transition: transform 0.3s linear 0.3s;
+
+  @media (min-width: 360px) {
+    font-size: 18px;
+  }
 
   &::before {
     position: absolute;

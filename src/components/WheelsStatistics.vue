@@ -1,5 +1,5 @@
 <template lang="pug">
-section.statistics
+section#statistics.statistics
   .container
     .statistics-wrap
       h3.statistics__title {{ statistics.title }}
@@ -14,6 +14,14 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["statistics"]),
+  },
+  methods: {
+    statisticsAnim() {
+      this.$store.commit("statisticsAnim");
+    },
+  },
+  mounted() {
+    this.statisticsAnim();
   },
 };
 </script>

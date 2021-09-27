@@ -21,6 +21,7 @@ export default {
   --bgSectionBlack: #000;
   --bgSectTeam: #ededed;
   --bgSidebar: #3b3b3b;
+  --bgFooter: #1e1e1e;
 
   --clrSectTtl: #1d1d1d;
   --clrSectTxt: #3b3b3b;
@@ -37,6 +38,7 @@ export default {
   --clrFtrLogo: #ededed;
   --clrFtrSub: #9d9d9d;
   --clrSidebarTtl: #1e1e1e;
+  --clrSidebarActive: #ff0000;
 
   --clrShadowNav: #eaeaea;
 

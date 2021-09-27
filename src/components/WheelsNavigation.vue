@@ -1,5 +1,5 @@
 <template lang="pug">
-section.navigation
+section#navigation.navigation
   .container--big
     .navigation-wrap
       .navigation__logo
@@ -34,6 +34,12 @@ export default {
     sidebarUnlock() {
       this.$store.commit("sidebarUnlock");
     },
+    navigationAnim() {
+      this.$store.commit("navigationAnim");
+    },
+  },
+  mounted() {
+    this.navigationAnim();
   },
 };
 </script>

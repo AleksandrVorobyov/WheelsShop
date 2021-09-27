@@ -1,5 +1,5 @@
 <template lang="pug">
-section.about
+section#about.about
   .container
     .about-wrap
       .about__title
@@ -18,6 +18,14 @@ export default {
   components: {
     sectionTitle,
   },
+  methods: {
+    aboutAnim() {
+      this.$store.commit("aboutAnim");
+    },
+  },
+  mounted() {
+    this.aboutAnim();
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -26,7 +34,7 @@ export default {
   padding: 50px 0px;
   overflow: hidden;
   z-index: 500;
-  background: white;
+  background: var(--bgSectionWhite);
 
   @media (min-width: 480px) {
     padding: 50px 0 65px;

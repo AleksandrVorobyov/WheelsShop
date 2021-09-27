@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 export default {
     state: {
         featured: {
@@ -86,6 +88,34 @@ export default {
             const cardItem = event.target;
             cardItem.style.transform = "rotateX(0)";
         },
+        featuredAnim() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from(".featured__title", {
+                scrollTrigger: {
+                    trigger: ".featured__title",
+                    toggleActions: "restart pause restart pause",
+                },
+                y: -30,
+                opacity: 0,
+                duration: .9,
+            });
+
+            let featuredCards = document.querySelectorAll('.featured__cards-item')
+
+            featuredCards.forEach((item) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        toggleActions: "restart pause restart pause",
+                    },
+                    opacity: 0,
+                    scale: 0,
+                    duration: 1.5,
+                    ease: "elastic.out(1, 0.4)"
+                });
+            })
+        }
     },
     actions: {
         featured({ commit, state }, products) {

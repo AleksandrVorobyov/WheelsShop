@@ -1,5 +1,5 @@
 <template lang="pug">
-section.social
+section#social.social
   .container--big
     .social-wrap
       .social__title
@@ -26,6 +26,14 @@ export default {
   components: {
     sectionTitle,
   },
+  methods: {
+    socialAnim() {
+      this.$store.commit("socialAnim");
+    },
+  },
+  mounted() {
+    this.socialAnim();
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -34,7 +42,7 @@ export default {
   padding: 50px 0;
   overflow: hidden;
   z-index: 500;
-  background: white;
+  background: var(--bgSectionWhite);
 
   @media (min-width: 480px) {
     padding: 100px 0;
@@ -75,6 +83,7 @@ export default {
   @media (min-width: 1360px) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 395px;
+    gap: 0;
   }
 }
 

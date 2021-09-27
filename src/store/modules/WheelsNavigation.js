@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 export default {
     state: {
         navigation: {
@@ -36,8 +38,17 @@ export default {
         },
     },
     mutations: {
-        navigation(state, payload) {
-            console.log(state.navigation);
+        navigationAnim(state, payload) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from(".navigation-wrap", {
+                scrollTrigger: {
+                    trigger: "#navigation",
+                    toggleActions: "restart pause restart pause",
+                },
+                opacity: .3,
+                duration: 1.5,
+            });
         },
     },
     actions: {

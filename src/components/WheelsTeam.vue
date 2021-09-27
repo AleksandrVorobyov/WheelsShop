@@ -1,5 +1,5 @@
 <template lang="pug">
-section.team
+section.team#team
   .container
     .team-wrap
       .team__title
@@ -20,6 +20,14 @@ export default {
   },
   components: {
     sectionTitle,
+  },
+  methods: {
+    teamAnim() {
+      this.$store.commit("teamAnim");
+    },
+  },
+  mounted() {
+    this.teamAnim();
   },
 };
 </script>

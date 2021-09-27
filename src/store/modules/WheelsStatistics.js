@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 export default {
     state: {
         statistics: {
@@ -25,8 +27,43 @@ export default {
         },
     },
     mutations: {
-        statistics(state, payload) {
-            console.log(state.statistics);
+        statisticsAnim(state, payload) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".statistics__info",
+                    toggleActions: "restart pause restart pause",
+                },
+            })
+
+            gsap.from(".statistics__title", {
+                scrollTrigger: {
+                    trigger: "#statistics",
+                    toggleActions: "restart pause restart pause",
+                },
+                opacity: 0,
+                y: -30,
+                duration: .7,
+            });
+            gsap.from(".statistics__subtitle", {
+                scrollTrigger: {
+                    trigger: "#statistics",
+                    toggleActions: "restart pause restart pause",
+                },
+                opacity: 0,
+                y: -30,
+                duration: .7,
+            });
+
+            let statisticsInfoItems = document.querySelectorAll('.statistics__info-item')
+            statisticsInfoItems.forEach((item) => {
+                tl.from(item, {
+                    opacity: 0,
+                    y: 30,
+                    duration: .7,
+                });
+            })
         },
     },
     actions: {
