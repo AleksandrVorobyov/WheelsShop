@@ -17,24 +17,26 @@ export default {
     },
     mutations: {
         aboutAnim(state, payload) {
-            gsap.registerPlugin(ScrollTrigger);
+            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+                gsap.registerPlugin(ScrollTrigger);
 
-            let tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#about",
-                    toggleActions: "restart pause restart pause",
-                },
-            })
-
-            let aboutItems = document.querySelectorAll('.about-wrap > *')
-
-            aboutItems.forEach((item) => {
-                tl.from(item, {
-                    opacity: 0,
-                    y: 30,
-                    duration: .7,
-                });
-            })
+                let tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#about",
+                        toggleActions: "restart pause play pause",
+                    },
+                })
+    
+                let aboutItems = document.querySelectorAll('.about-wrap > *')
+    
+                aboutItems.forEach((item) => {
+                    tl.from(item, {
+                        opacity: 0,
+                        y: 30,
+                        duration: .7,
+                    });
+                })
+            }
         },
     },
     actions: {

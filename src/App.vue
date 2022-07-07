@@ -84,7 +84,7 @@ body {
   font-weight: 400;
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 1780px) {
   body.hidden {
     position: fixed;
     overflow: hidden;
@@ -105,7 +105,7 @@ body {
   }
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1780px) {
   #page.page--close {
     margin-left: 400px;
     width: calc(100% - 400px);

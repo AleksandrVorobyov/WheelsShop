@@ -39,16 +39,18 @@ export default {
     },
     mutations: {
         navigationAnim(state, payload) {
-            gsap.registerPlugin(ScrollTrigger);
+            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+                gsap.registerPlugin(ScrollTrigger);
 
-            gsap.from(".navigation-wrap", {
-                scrollTrigger: {
-                    trigger: "#navigation",
-                    toggleActions: "restart pause restart pause",
-                },
-                opacity: .3,
-                duration: 1.5,
-            });
+                gsap.from(".navigation-wrap", {
+                    scrollTrigger: {
+                        trigger: "#navigation",
+                        toggleActions: "restart pause play pause",
+                    },
+                    opacity: .3,
+                    duration: 1.5,
+                });
+            }
         },
     },
     actions: {

@@ -38,12 +38,13 @@ export default {
   },
   mutations: {
     socialAnim(state, payload) {
+      if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
       gsap.registerPlugin(ScrollTrigger);
 
       gsap.from('.social__title', {
         scrollTrigger: {
           trigger: ".social__title",
-          toggleActions: "restart pause restart pause",
+          toggleActions: "restart pause play pause",
         },
         opacity: 0,
         y: -30,
@@ -53,7 +54,7 @@ export default {
       gsap.from('.social__appeal', {
         scrollTrigger: {
           trigger: ".social__appeal",
-          toggleActions: "restart pause restart pause",
+          toggleActions: "restart pause play pause",
         },
         opacity: 0,
         y: 30,
@@ -63,7 +64,7 @@ export default {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".social__case",
-          toggleActions: "restart pause restart pause",
+          toggleActions: "restart pause play pause",
         },
       })
 
@@ -76,6 +77,7 @@ export default {
           duration: .7,
         });
       })
+    }
     },
   },
   actions: {

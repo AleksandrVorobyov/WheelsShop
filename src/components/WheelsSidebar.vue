@@ -60,8 +60,9 @@ export default {
 .sidebar {
   position: fixed;
   top: 0;
+  left: -400px;
   padding: 100px 0px;
-  width: 0px;
+  width: 100%;
   height: 100vh;
   overflow: scroll;
   z-index: 2000;
@@ -72,24 +73,19 @@ export default {
   @media (min-width: 720px) {
     overflow: hidden;
   }
-}
-
-.sidebar--active {
-  width: 100%;
-  padding: 100px 0px;
 
   @media (min-width: 480px) {
     width: 400px;
     padding: 100px 30px;
   }
+}
 
-  .sidebar-wrap {
-    opacity: 1;
-  }
+.sidebar--active {
+  left: 0;
 }
 
 .sidebar-wrap {
-  opacity: 0;
+  opacity: 1;
   transition: all 0.4s linear;
 }
 

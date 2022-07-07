@@ -28,42 +28,44 @@ export default {
     },
     mutations: {
         statisticsAnim(state, payload) {
-            gsap.registerPlugin(ScrollTrigger);
+            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+                gsap.registerPlugin(ScrollTrigger);
 
-            let tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".statistics__info",
-                    toggleActions: "restart pause restart pause",
-                },
-            })
+                let tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".statistics__info",
+                        toggleActions: "restart pause play pause",
+                    },
+                })
 
-            gsap.from(".statistics__title", {
-                scrollTrigger: {
-                    trigger: "#statistics",
-                    toggleActions: "restart pause restart pause",
-                },
-                opacity: 0,
-                y: -30,
-                duration: .7,
-            });
-            gsap.from(".statistics__subtitle", {
-                scrollTrigger: {
-                    trigger: "#statistics",
-                    toggleActions: "restart pause restart pause",
-                },
-                opacity: 0,
-                y: -30,
-                duration: .7,
-            });
-
-            let statisticsInfoItems = document.querySelectorAll('.statistics__info-item')
-            statisticsInfoItems.forEach((item) => {
-                tl.from(item, {
+                gsap.from(".statistics__title", {
+                    scrollTrigger: {
+                        trigger: "#statistics",
+                        toggleActions: "restart pause play pause",
+                    },
                     opacity: 0,
-                    y: 30,
+                    y: -30,
                     duration: .7,
                 });
-            })
+                gsap.from(".statistics__subtitle", {
+                    scrollTrigger: {
+                        trigger: "#statistics",
+                        toggleActions: "restart pause play pause",
+                    },
+                    opacity: 0,
+                    y: -30,
+                    duration: .7,
+                });
+
+                let statisticsInfoItems = document.querySelectorAll('.statistics__info-item')
+                statisticsInfoItems.forEach((item) => {
+                    tl.from(item, {
+                        opacity: 0,
+                        y: 30,
+                        duration: .7,
+                    });
+                })
+            }
         },
     },
     actions: {

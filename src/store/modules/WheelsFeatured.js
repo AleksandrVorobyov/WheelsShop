@@ -73,15 +73,17 @@ export default {
     },
     mutations: {
         featuredCardAnim(_, event) {
-            const cardItem = event.target,
-                halfHeight = cardItem.offsetHeight / 2,
-                halfWidth = cardItem.offsetWidth / 2;
-            cardItem.style.transform =
-                "rotateX(" +
-                -(event.offsetY - halfHeight) / 5 +
-                "deg) rotateY(" +
-                (event.offsetX - halfWidth) / 5 +
-                "deg)";
+            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+                const cardItem = event.target,
+                    halfHeight = cardItem.offsetHeight / 2,
+                    halfWidth = cardItem.offsetWidth / 2;
+                cardItem.style.transform =
+                    "rotateX(" +
+                    -(event.offsetY - halfHeight) / 5 +
+                    "deg) rotateY(" +
+                    (event.offsetX - halfWidth) / 5 +
+                    "deg)";
+            }
         },
 
         featuredCardStop(_, event) {
@@ -89,32 +91,34 @@ export default {
             cardItem.style.transform = "rotateX(0)";
         },
         featuredAnim() {
-            gsap.registerPlugin(ScrollTrigger);
+            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+                gsap.registerPlugin(ScrollTrigger);
 
-            gsap.from(".featured__title", {
-                scrollTrigger: {
-                    trigger: ".featured__title",
-                    toggleActions: "restart pause restart pause",
-                },
-                y: -30,
-                opacity: 0,
-                duration: .9,
-            });
-
-            let featuredCards = document.querySelectorAll('.featured__cards-item')
-
-            featuredCards.forEach((item) => {
-                gsap.from(item, {
+                gsap.from(".featured__title", {
                     scrollTrigger: {
-                        trigger: item,
-                        toggleActions: "restart pause restart pause",
+                        trigger: ".featured__title",
+                        toggleActions: "restart pause play pause",
                     },
+                    y: -30,
                     opacity: 0,
-                    scale: 0,
-                    duration: 1.5,
-                    ease: "elastic.out(1, 0.4)"
+                    duration: .9,
                 });
-            })
+
+                let featuredCards = document.querySelectorAll('.featured__cards-item')
+
+                featuredCards.forEach((item) => {
+                    gsap.from(item, {
+                        scrollTrigger: {
+                            trigger: item,
+                            toggleActions: "restart pause play pause",
+                        },
+                        opacity: 0,
+                        scale: 0,
+                        duration: 1.5,
+                        ease: "elastic.out(1, 0.4)"
+                    });
+                })
+            }
         }
     },
     actions: {

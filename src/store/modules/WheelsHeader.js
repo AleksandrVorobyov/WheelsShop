@@ -18,27 +18,29 @@ export default {
     },
     mutations: {
         headerAnim(state, payload) {
-            gsap.registerPlugin(ScrollTrigger);
+            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+                gsap.registerPlugin(ScrollTrigger);
 
-            gsap.from(".header__body", {
-                scrollTrigger: {
-                    trigger: ".header__body",
-                    toggleActions: "restart pause restart pause",
-                },
-                opacity: .5,
-                x: 100,
-                duration: 1.5,
-            });
+                gsap.from(".header__body", {
+                    scrollTrigger: {
+                        trigger: ".header__body",
+                        toggleActions: "restart pause play pause",
+                    },
+                    opacity: .5,
+                    x: 100,
+                    duration: 1.5,
+                });
 
-            gsap.from(".header__nav", {
-                scrollTrigger: {
-                    trigger: ".header__nav",
-                    toggleActions: "restart pause restart pause",
-                },
-                opacity: .5,
-                y: -100,
-                duration: 1.5,
-            });
+                gsap.from(".header__nav", {
+                    scrollTrigger: {
+                        trigger: ".header__nav",
+                        toggleActions: "restart pause play pause",
+                    },
+                    opacity: .5,
+                    y: -100,
+                    duration: 1.5,
+                });
+            }
         },
     },
     actions: {
