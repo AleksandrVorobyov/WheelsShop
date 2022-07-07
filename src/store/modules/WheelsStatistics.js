@@ -28,7 +28,7 @@ export default {
     },
     mutations: {
         statisticsAnim(state, payload) {
-            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+            if (window.innerWidth >= 768 && window.innerHeight >= 850) {
                 gsap.registerPlugin(ScrollTrigger);
 
                 let tl = gsap.timeline({

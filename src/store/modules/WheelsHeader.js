@@ -18,7 +18,7 @@ export default {
     },
     mutations: {
         headerAnim(state, payload) {
-            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+            if (window.innerWidth >= 768 && window.innerHeight >= 850) {
                 gsap.registerPlugin(ScrollTrigger);
 
                 gsap.from(".header__body", {

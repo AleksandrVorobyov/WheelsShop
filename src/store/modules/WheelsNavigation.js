@@ -39,7 +39,7 @@ export default {
     },
     mutations: {
         navigationAnim(state, payload) {
-            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+            if (window.innerWidth >= 768 && window.innerHeight >= 850) {
                 gsap.registerPlugin(ScrollTrigger);
 
                 gsap.from(".navigation-wrap", {

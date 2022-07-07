@@ -73,7 +73,7 @@ export default {
     },
     mutations: {
         featuredCardAnim(_, event) {
-            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+            if (window.innerWidth >= 768 && window.innerHeight >= 850) {
                 const cardItem = event.target,
                     halfHeight = cardItem.offsetHeight / 2,
                     halfWidth = cardItem.offsetWidth / 2;
@@ -91,7 +91,7 @@ export default {
             cardItem.style.transform = "rotateX(0)";
         },
         featuredAnim() {
-            if (window.innerWidth >= 768 && window.innerHeight >= 1024) {
+            if (window.innerWidth >= 768 && window.innerHeight >= 850) {
                 gsap.registerPlugin(ScrollTrigger);
 
                 gsap.from(".featured__title", {
